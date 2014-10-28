@@ -15,6 +15,12 @@ indent_style = tab
 [**.js]
 indent_style = tab
 
+[**.html]
+indent_style = tab
+
+[**.css]
+indent_style = tab
+
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml,**.pp}]
 indent_style = space
