@@ -60,3 +60,5 @@ target/
 
 # Database
 db.sqlite3
+.idea/dataSources.ids
+.idea/dataSources.xml
