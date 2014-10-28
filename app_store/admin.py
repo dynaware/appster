@@ -10,3 +10,4 @@ class ApplicationAdmin(admin.ModelAdmin):
 	inlines = [ForeignApplicationInline]
 
 admin.site.register(Application, ApplicationAdmin)
+admin.site.register(ForeignRepo)
