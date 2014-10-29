@@ -2,5 +2,12 @@
 
 {% block content %}
     <h1>{{ app.name }}</h1>
-    <p>{{ app.description }}</p>
+    {{ app.description }}
+
+    <h2>Other Application Stores:</h2>
+    <ul>
+        {% for repo in app.foreignapplication_set.all %}
+            <li><a href="{{ repo }}">{{ repo.repository.name }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock %}
