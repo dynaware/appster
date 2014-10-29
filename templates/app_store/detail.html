@@ -2,7 +2,10 @@
 
 {% block content %}
     <h1>{{ app.name }}</h1>
+
+    {%  autoescape off %}
     {{ app.description }}
+    {% endautoescape %}
 
     <h2>Other Application Stores:</h2>
     <ul>
