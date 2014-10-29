@@ -5,7 +5,9 @@
     {% for app in apps %}
         <div class="app">
             <a href="{% url 'detail' app.id %}"><h2>{{ app.name }}</h2></a>
-            <p>{{ app.description }}</p>
+            {%  autoescape off %}
+                {{ app.description }}
+            {% endautoescape %}
         </div>
     {% endfor %}
 {% endblock%}
