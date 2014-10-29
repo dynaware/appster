@@ -8,4 +8,4 @@ def index(request):
 
 
 def detail(request, app_id):
-	return render(request, 'app_store/detail.html', {'app': Application.objects.get(app_id)})
+	return render(request, 'app_store/detail.html', {'app': Application.objects.get(id=app_id)})
