@@ -6,13 +6,16 @@ class ForeignRepo(models.Model):
 	Represents one instance of a foreign app repository (Google Play, Apple App Store, etc.)
 
 	Fields:
-		name   : The name of this repository
+		name:
+			The name of this repository
 			(Google Play Store)
 
-		url    : The main URL entry-point URL
+		url:
+			The main URL entry-point URL
 			(https://play.google.com)
 
-		app_url: The url pattern that each application will have, the position of each app id
+		app_url:
+			The url pattern that each application will have, the position of each app id
 			in the url will be replaced with the text "{APP_ID}".
 			(https://play.google.com/store/apps/details?id={APP_ID})
 	"""
@@ -30,7 +33,8 @@ class Application(models.Model):
 	Represents one instance of an application
 
 	Fields:
-		name: The name of this application (Google Drive)
+		name:
+			The name of this application (Google Drive)
 	"""
 	name = models.CharField(max_length=120)
 
