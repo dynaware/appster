@@ -74,3 +74,22 @@ class ForeignApplication(models.Model):
 
 	def __str__(self):
 		return self.repository.app_url.format(APP_ID=self.app_id)
+
+
+class Rating(models.Model):
+	"""
+	Single instance of an application's rating.
+
+	Fields:
+		rating:
+			The numeric representation of the rating, where rating R is 1<=R<=5
+
+		application:
+			The application that this rating belongs to.
+	"""
+	rating = models.SmallIntegerField()
+
+	def save_model(self, request, obj, form, change):
+		if getattr(obj, 'author', None) is None:
+			obj.author = request.user
+		obj.save()
