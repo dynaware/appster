@@ -2,7 +2,7 @@ from django.contrib import admin
 from app_store.models import *
 
 
-class ForeignApplicationInline(admin.StackedInline):
+class ForeignApplicationInline(admin.TabularInline):
 	model = ForeignApplication
 
 
