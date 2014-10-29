@@ -58,7 +58,7 @@ class ForeignApplication(models.Model):
 	"""
 	repository = models.ForeignKey(ForeignRepo)
 	application = models.ForeignKey(Application)
-	url = models.CharField(max_length=120)
+	app_id = models.CharField(max_length=120)
 
 	def __str__(self):
 		return '{} on {}'.format(self.application, self.repository)
