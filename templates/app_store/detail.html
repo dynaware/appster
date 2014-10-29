@@ -7,10 +7,10 @@
     {{ app.description }}
     {% endautoescape %}
 
-    <h2>Other Application Stores:</h2>
+    <h2>Find {{ app.name }} for These Platforms:</h2>
     <ul>
         {% for repo in app.foreignapplication_set.all %}
-            <li><a href="{{ repo }}">{{ repo.repository.name }}</a></li>
+            <li>{{ repo.repository.platform }}: <a href="{{ repo }}">{{ repo.repository.name }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}
