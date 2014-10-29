@@ -85,9 +85,13 @@ class Rating(models.Model):
 			The numeric representation of the rating, where rating R is 1<=R<=5
 
 		application:
-			The application that this rating belongs to.
+			The application that this rating belongs to
+
+		author:
+			The user that created this rating
 	"""
 	rating = models.SmallIntegerField()
+	application = models.ForeignKey(Application)
 
 	def save_model(self, request, obj, form, change):
 		if getattr(obj, 'author', None) is None:
