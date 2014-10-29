@@ -4,6 +4,7 @@ from app_store.models import *
 
 class ForeignApplicationInline(admin.TabularInline):
 	model = ForeignApplication
+	extra = 1
 
 
 class ApplicationAdmin(admin.ModelAdmin):
