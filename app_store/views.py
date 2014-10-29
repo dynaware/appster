@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+from app_store.models import *
+
+
+def index(request):
+	return render(request, 'app_store/index.html', {'apps': Application.objects.all()})
