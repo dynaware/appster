@@ -50,6 +50,7 @@ class Application(models.Model):
 	def __str__(self):
 		return self.name
 
+
 class ForeignApplication(models.Model):
 	"""
 	Represents one instance of a link between an application and its foreign repository.
