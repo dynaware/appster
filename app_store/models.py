@@ -26,6 +26,12 @@ class ForeignRepo(models.Model):
 
 
 class Application(models.Model):
+	"""
+	Represents one instance of an application
+
+	Fields:
+		name: The name of this application (Google Drive)
+	"""
 	name = models.CharField(max_length=120)
 
 	def __str__(self):
