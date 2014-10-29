@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Appster App Store</title>
+</head>
+<body>
+    <h1>Our Apps:</h1>
+    {% for app in apps %}
+        <div class="app">
+            <h2>{{ app.name }}</h2>
+            <p>{{ app.description }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
