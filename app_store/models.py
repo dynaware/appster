@@ -18,11 +18,16 @@ class ForeignRepo(models.Model):
 			The url pattern that each application will have, the position of each app id
 			in the url will be replaced with the text "{APP_ID}".
 			(https://play.google.com/store/apps/details?id={APP_ID})
+
+		platform
+			the platform that this repository serves
+			(Android)
 	"""
 
 	name = models.CharField(max_length=70)
 	url = models.CharField(max_length=120)
 	app_url = models.CharField(max_length=120)
+	platform = models.CharField(max_length=120)
 
 	def __str__(self):
 		return self.name
