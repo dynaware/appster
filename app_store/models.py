@@ -18,15 +18,11 @@ class ForeignRepo(models.Model):
 			The url pattern that each application will have, the position of each app id
 			in the url will be replaced with the text "{APP_ID}".
 			(https://play.google.com/store/apps/details?id={APP_ID})
-
-		description:
-			The application's description
 	"""
 
 	name = models.CharField(max_length=70)
 	url = models.CharField(max_length=120)
 	app_url = models.CharField(max_length=120)
-	description = models.TextField()
 
 	def __str__(self):
 		return self.name
@@ -39,12 +35,15 @@ class Application(models.Model):
 	Fields:
 		name:
 			The name of this application (Google Drive)
+
+		description:
+			The application's description
 	"""
 	name = models.CharField(max_length=120)
+	description = models.TextField()
 
 	def __str__(self):
 		return self.name
-
 
 class ForeignApplication(models.Model):
 	"""
