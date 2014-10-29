@@ -68,4 +68,4 @@ class ForeignApplication(models.Model):
 	app_id = models.CharField(max_length=120)
 
 	def __str__(self):
-		return '{} on {}'.format(self.application, self.repository)
+		return self.repository.app_url.format(APP_ID=self.app_id)
