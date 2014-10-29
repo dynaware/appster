@@ -39,6 +39,23 @@ class Application(models.Model):
 
 
 class ForeignApplication(models.Model):
+	"""
+	Represents one instance of a link between an application and its foreign repository.
+
+	Example:
+		Google Drive is an Application, Google Drive on the Apple App Store is a ForeignApplication,
+		Google Drive on the Google Play store is a ForeignApplication.
+
+	Fields:
+		repository:
+			The ForeignRepo instance that this is stored on
+
+		application:
+			The Application that this is related to
+
+		app_id:
+			The text that will be substituted for APP_ID on the foreign repository's app_url
+	"""
 	repository = models.ForeignKey(ForeignRepo)
 	application = models.ForeignKey(Application)
 	url = models.CharField(max_length=120)
