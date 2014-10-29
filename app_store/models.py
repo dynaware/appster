@@ -19,7 +19,7 @@ class ForeignRepo(models.Model):
 			in the url will be replaced with the text "{APP_ID}".
 			(https://play.google.com/store/apps/details?id={APP_ID})
 
-		platform
+		platform:
 			the platform that this repository serves
 			(Android)
 	"""
