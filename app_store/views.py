@@ -20,3 +20,13 @@ def category(request, category_id):
 			'apps': Application.objects.filter(category=category_id)
 		}
 	)
+
+
+def categories(request):
+	return render(
+		request,
+		'app_store/categories.html',
+		{
+			'categories': Category.objects.all()
+		}
+	)
