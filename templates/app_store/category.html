@@ -4,6 +4,6 @@
     <h1>{{ category }}</h1>
 
     {% for app in apps %}
-        <h2>{{ app.name }}</h2>
+        <h2><a href="{% url 'detail' app.id %}">{{ app.name }}</a></h2>
     {% endfor %}
 {% endblock %}
