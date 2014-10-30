@@ -55,9 +55,13 @@ class Application(models.Model):
 
 		description:
 			The application's description
+
+		category:
+			The application's category
 	"""
 	name = models.CharField(max_length=120)
 	description = models.TextField()
+	category = models.ForeignKey(Category)
 
 	def __str__(self):
 		return self.name
