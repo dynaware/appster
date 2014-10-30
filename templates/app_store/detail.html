@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>{{ app.name }}</h1>
-    <p>({{ app.category }})</p>
+    <p>(<a href="{% url 'category' app.category.id %}">{{ app.category }}</a>)</p>
 
     {%  autoescape off %}
     {{ app.description }}
