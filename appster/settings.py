@@ -58,7 +58,6 @@ WSGI_APPLICATION = 'appster.wsgi.application'
 
 
 # Database
-
 database = os.environ.get('DATABASE', 'sqlite')
 
 if database == 'sqlite':
