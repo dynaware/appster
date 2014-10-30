@@ -58,7 +58,6 @@ WSGI_APPLICATION = 'appster.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 database = os.environ.get('DATABASE', 'sqlite')
 
