@@ -12,3 +12,4 @@ class ApplicationAdmin(admin.ModelAdmin):
 
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(ForeignRepo)
+admin.site.register(Category)
