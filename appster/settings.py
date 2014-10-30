@@ -74,10 +74,11 @@ elif database == 'postgress':
 	DATABASES = {
 		'default': {
 			'ENGINE': 'django.db.backends.postgresql_psycopg2',
-			'NAME': 'appster',
+			'NAME': os.environ.get('DB_NAME', 'appster'),
 			'USER': os.environ.get('DB_USER', 'root'),
 			'PASSWORD': os.environ.get('DB_PASSWORD', 'root'),
-			'HOST': os.environ.get('HEROKU_POSTGRESQL_GOLD_URL', ''),
+			'HOST': os.environ.get('DB_HOST', 'localhost'),
+			'PORT': os.environ.get('DB_PORT', ''),
 		}
 	}
 
