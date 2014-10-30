@@ -1,1 +1,1 @@
-web: python -R manage.py runserver $PORT
+web: gunicorn appster.wsgi --log-file -
