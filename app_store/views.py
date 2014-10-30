@@ -9,3 +9,14 @@ def index(request):
 
 def detail(request, app_id):
 	return render(request, 'app_store/detail.html', {'app': Application.objects.get(id=app_id)})
+
+
+def category(request, category_id):
+	return render(
+		request,
+		'app_store/category.html',
+		{
+			'category': Category.objects.get(id=category_id),
+			'apps': Application.objects.filter(category=category_id)
+		}
+	)
