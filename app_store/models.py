@@ -1,6 +1,18 @@
 from django.db import models
 
 
+class Category(models.Model):
+	"""
+	Represents one instance of a category (game, book, utility, etc.)
+
+	Fields:
+		title:
+			The name of this category
+			(games, books, utilities)
+	"""
+	title = models.CharField(max_length=20)
+
+
 class ForeignRepo(models.Model):
 	"""
 	Represents one instance of a foreign app repository (Google Play, Apple App Store, etc.)
