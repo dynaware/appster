@@ -69,6 +69,7 @@ if database == 'sqlite':
 			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 		}
 	}
+
 elif database == 'postgress':
 	DATABASES = {
 		'default': {
