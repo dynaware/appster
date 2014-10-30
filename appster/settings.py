@@ -60,12 +60,25 @@ WSGI_APPLICATION = 'appster.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
-DATABASES = {
-	'default': {
-		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+database = os.environ.get('DATABASE', 'sqlite')
+
+if database == 'sqlite':
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.sqlite3',
+			'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		}
 	}
-}
+elif database == 'postgress':
+	DATABASES = {
+		'default': {
+			'ENGINE': 'django.db.backends.postgresql_psycopg2',
+			'NAME': 'appster',
+			'USER': os.environ.get('DB_USER', 'root'),
+			'PASSWORD': os.environ.get('DB_PASSWORD', 'root'),
+			'HOST': os.environ.get('HEROKU_POSTGRESQL_GOLD_URL', ''),
+		}
+	}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
