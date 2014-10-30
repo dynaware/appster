@@ -4,7 +4,7 @@
     <h1>Our Apps:</h1>
     {% for app in apps %}
         <div class="app">
-            <a href="{% url 'detail' app.id %}"><h2>{{ app.name }}</h2></a>
+           <h2><a href="{% url 'detail' app.id %}">{{ app.name }}</a></h2>
             {%  autoescape off %}
                 {{ app.description }}
             {% endautoescape %}
