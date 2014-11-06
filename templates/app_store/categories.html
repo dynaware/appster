@@ -1,8 +1,32 @@
 {% extends 'foundation/base.html' %}
 
 {% block base_body %}
-    <h1>Categories:</h1>
-    {% for category in categories %}
-        <h2><a href="{% url 'category' category.id %}">{{ category }}</a></h2>
-    {% endfor %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="row">
+
+                <div class="large-4 small-12 columns">
+
+                    <img src="http://placehold.it/500x500&text=Categories">
+
+                    <div class="hide-for-small panel">
+                        <h3>Categories</h3>
+                        <h5 class="subheader">Here is a list of all the application categories that we have here at Appster.</h5>
+                    </div>
+                </div>
+
+                {% for category in categories %}
+                    <a href="{% url 'category' category.id %}">
+                        <div class="large-2 small-6 columns">
+                            <img src="http://placehold.it/1000x1000&text={{ category.title }}">
+
+                            <div class="panel">
+                                <h5>{{ category.title }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock%}
