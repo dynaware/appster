@@ -49,6 +49,28 @@
         </nav>
     {% endblock top_nav %}
 
+    {% block top_search %}
+        <div class="row">
+            <div class="large-3 columns">
+                <h1><img src="http://placehold.it/400x100&text=Logo"></h1>
+            </div>
+            <div class="large-9 columns right">
+                <form>
+                    <div class="row collapse">
+                        <div class="large-10 small-8 columns">
+                            <input type="text"/>
+                        </div>
+
+                        <div class="large-2 small-4 columns">
+                            <a href="#" class="postfix button expand">Search</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    {% endblock top_search %}
+
     {# Main content goes here #}
     {% block base_body %}{% endblock base_body %}
 
