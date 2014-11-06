@@ -4,7 +4,7 @@
     <h1>{{ app.name }}</h1>
     <p>(<a href="{% url 'category' app.category.id %}">{{ app.category }}</a>)</p>
 
-    <div class="app-rating"><p>Rating: {{ app.rating }}/5</p></div>
+    <div class="app-rating"><p>Rating: {{ app.rating }}/5.0</p></div>
 
     {%  autoescape off %}
     {{ app.description }}
@@ -22,7 +22,7 @@
     <div class="app-reviews">
     {% for review in app.review_set.all %}
         <div class="app-review">
-            <div class="app-review-rating"><p>{{ review.rating }}/5.0</p></div>
+            <div class="app-review-rating"><p>{{ review.rating }}/5</p></div>
             <p class="app-review-text">{{ review.review_text }}</p>
         </div>
     {% endfor %}
