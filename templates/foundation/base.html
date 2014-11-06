@@ -74,6 +74,24 @@
     {# Main content goes here #}
     {% block base_body %}{% endblock base_body %}
 
+    {% block footer %}
+        <footer class="row">
+            <div class="large-12 columns">
+                <hr>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <p>© Copyright 2014 Dynaware</p>
+                    </div>
+                    <div class="large-6 columns">
+                        <ul class="inline-list right">
+                            <li><a href="https://github.com/dynaware/appster">Github</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock footer %}
+
     {# Override if you need another version of jQuery #}
     {% block foundation_jquery %}
     <script src="{% static "foundation/js/vendor/jquery.js" %}"></script>
