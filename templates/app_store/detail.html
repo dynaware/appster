@@ -1,30 +1,103 @@
 {%  extends 'foundation/base.html' %}
 
 {% block base_body %}
-    <h1>{{ app.name }}</h1>
-    <p>(<a href="{% url 'category' app.category.id %}">{{ app.category }}</a>)</p>
-
-    <div class="app-rating"><p>Rating: {{ app.rating }}/5.0</p></div>
-
-    {%  autoescape off %}
-    {{ app.description }}
-    {% endautoescape %}
-
-    <h2>Find {{ app.name }} for These Platforms:</h2>
-    <ul>
-        {% for repo in app.foreignapplication_set.all %}
-            <li>{{ repo.repository.platform }}: <a href="{{ repo }}">{{ repo.repository.name }}</a></li>
-        {% endfor %}
-    </ul>
-
-    <h2>Reviews:</h2>
-
-    <div class="app-reviews">
-    {% for review in app.review_set.all %}
-        <div class="app-review">
-            <div class="app-review-rating"><p>{{ review.rating }}/5</p></div>
-            <p class="app-review-text">{{ review.review_text }}</p>
+    <div class="row">
+        <div class="large-3 columns">
+            <h1><img src="http://placehold.it/400x100&text=Logo"></h1>
         </div>
-    {% endfor %}
+        <div class="large-9 columns right">
+            <form>
+                <div class="row collapse">
+                    <div class="large-10 small-8 columns">
+                        <input type="text"/>
+                    </div>
+
+                    <div class="large-2 small-4 columns">
+                        <a href="#" class="postfix button expand">Search</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
     </div>
+
+
+    <div class="row">
+        <hr>
+        <div class="large-2 columns">
+            <img src="http://placehold.it/400x300&text=[img]">
+            <br>
+            <img src="http://placehold.it/400x300&text=[img]">
+            <br>
+            <img src="http://placehold.it/400x300&text=[img]">
+            <br>
+            <img src="http://placehold.it/400x300&text=[img]">
+        </div>
+        <div class="large-5 columns">
+            <img src="http://placehold.it/400x500">
+        </div>
+        <div class="large-5 columns">
+            <h2>{{ app.name }}</h2>
+            {% if app.rating %}<p>{{ app.rating }}/5.0</p>{% endif %}
+            <p><a href="{% url 'category' app.category.id %}">{{ app.category }}</a></p>
+            {% autoescape off %}
+            <p>{{ app.description }}</p>
+            {% endautoescape %}
+
+            {% for repo in app.foreignapplication_set.all %}
+                <div class="panel">
+                    <h5>{{ repo.repository.name }}</h5>
+                    <h6 class="subheader">{{ app.name }} is available from {{ repo.repository.name }} for {{ repo.repository.platform }}</h6>
+                    <a href="{{ repo }}" class="small button">Download from {{ repo.repository.name }}</a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <hr/>
+        {% if app.review_set.all %}
+            {% for review in app.review_set.all %}
+                <div class="large-6 columns">
+                    <h4>{{ review.author }}</h4>
+                    <h5>{{ review.rating }}/5</h5>
+                    {% if review.review_text %}<p>{{ review.review_text }}</p>{% endif %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="large-6 columns">
+                <h4>Reviews</h4>
+                <p>Eventually, some nice person will come along and write a review for {{ app.name }}. I hope to be there when that day comes.</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <hr>
+        <div class="large-12 columns">
+            <h4>You might also like:</h4>
+            <img src="http://placehold.it/200x150&text=[img]">
+            <img src="http://placehold.it/200x150&text=[img]">
+            <img src="http://placehold.it/200x150&text=[img]">
+            <img src="http://placehold.it/200x150&text=[img]">
+        </div>
+    </div>
+
+
+    <footer class="row">
+        <div class="large-12 columns">
+            <hr>
+            <div class="row">
+                <div class="large-6 columns">
+                    <p>© Copyright 2014 Dynaware.</p>
+                </div>
+                <div class="large-6 columns">
+                    <ul class="inline-list right">
+                        <li><a href="https://github.com/dynaware/appster">Github</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 {% endblock %}
