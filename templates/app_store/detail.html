@@ -26,7 +26,7 @@
             {% for repo in app.foreignapplication_set.all %}
                 <div class="panel">
                     <h5>{{ repo.repository.name }}</h5>
-                    <h6 class="subheader">{{ app.name }} is available from the {{ repo.repository.name }} for {{ repo.repository.platform }}</h6>
+                    <h6 class="subheader">{{ app.name }} is available for {{ repo.repository.platform }} on the {{ repo.repository.name }}</h6>
                     <a href="{{ repo }}" class="small button">Download from {{ repo.repository.name }}</a>
                 </div>
             {% endfor %}
