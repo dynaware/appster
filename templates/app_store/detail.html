@@ -1,6 +1,6 @@
-{%  extends 'base.html' %}
+{%  extends 'foundation/base.html' %}
 
-{% block content %}
+{% block base_body %}
     <h1>{{ app.name }}</h1>
     <p>(<a href="{% url 'category' app.category.id %}">{{ app.category }}</a>)</p>
 

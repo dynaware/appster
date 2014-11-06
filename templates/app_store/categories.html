@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'foundation/base.html' %}
 
-{% block content %}
+{% block base_body %}
     <h1>Categories:</h1>
     {% for category in categories %}
         <h2><a href="{% url 'category' category.id %}">{{ category }}</a></h2>
