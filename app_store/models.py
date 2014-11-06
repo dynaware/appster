@@ -66,6 +66,13 @@ class Application(models.Model):
 	description = models.TextField()
 	category = models.ForeignKey(Category)
 
+	@property
+	def rating(self):
+		ratings = [i.rating for i in self.review_set.all()]
+		if len(ratings) == 0:
+			return 0.0
+		return sum(ratings) / len(ratings)
+
 	def __str__(self):
 		return self.name
 
