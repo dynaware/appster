@@ -7,8 +7,13 @@ class ForeignApplicationInline(admin.TabularInline):
 	extra = 1
 
 
+class ReviewInline(admin.TabularInline):
+	model = Review
+	extra = 1
+
+
 class ApplicationAdmin(admin.ModelAdmin):
-	inlines = [ForeignApplicationInline]
+	inlines = [ForeignApplicationInline, ReviewInline]
 
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(ForeignRepo)
