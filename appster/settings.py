@@ -28,7 +28,7 @@ DEBUG = os.environ.get('DEBUG', 'TRUE').lower() == 'true'
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['dynaware.herokuapp.com']
 
 
 # Application definition
