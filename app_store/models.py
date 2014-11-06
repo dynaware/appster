@@ -96,22 +96,26 @@ class ForeignApplication(models.Model):
 		return self.repository.app_url.format(APP_ID=self.app_id)
 
 
-class Rating(models.Model):
+class Review(models.Model):
 	"""
-	Single instance of an application's rating.
+	Single instance of an application's review.
 
 	Fields:
 		rating:
 			The numeric representation of the rating, where rating R is 1<=R<=5
 
 		application:
-			The application that this rating belongs to
+			The application that this review belongs to
 
 		author:
-			The user that created this rating
+			The user that created this review
+
+		review_text:
+			The text of this review, does not have to be filled.
 	"""
 	rating = models.SmallIntegerField()
 	application = models.ForeignKey(Application)
+	review_text = models.TextField()
 
 	def save_model(self, request, obj, form, change):
 		if getattr(obj, 'author', None) is None:
