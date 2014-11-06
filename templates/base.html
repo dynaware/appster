@@ -5,8 +5,10 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <a href="/">HOME</a>
-    <a href="{% url 'categories' %}">CATEGORIES</a>
+    <div class="header-nav">
+        <a href="/">HOME</a>
+        <a href="{% url 'categories' %}">CATEGORIES</a>
+    </div>
     {% block content %}
     {% endblock %}
 </body>
