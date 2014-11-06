@@ -4,6 +4,8 @@
     <h1>{{ app.name }}</h1>
     <p>(<a href="{% url 'category' app.category.id %}">{{ app.category }}</a>)</p>
 
+    <div class="app-rating"><p>Rating: {{ app.rating }}/5</p></div>
+
     {%  autoescape off %}
     {{ app.description }}
     {% endautoescape %}
