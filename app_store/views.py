@@ -4,7 +4,14 @@ from app_store.models import *
 
 
 def index(request):
-	return render(request, 'app_store/index.html', {'apps': Application.objects.all(), 'title': 'Appster by Dynaware'})
+	return render(
+		request,
+		'app_store/index.html',
+		{
+			'apps': sorted(Application.objects.all(), key=lambda x: x.rating, reverse=True),
+			'title': 'Appster by Dynaware'
+		}
+	)
 
 
 def detail(request, app_id):
