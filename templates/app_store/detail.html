@@ -16,4 +16,15 @@
             <li>{{ repo.repository.platform }}: <a href="{{ repo }}">{{ repo.repository.name }}</a></li>
         {% endfor %}
     </ul>
+
+    <h2>Reviews:</h2>
+
+    <div class="app-reviews">
+    {% for review in app.review_set.all %}
+        <div class="app-review">
+            <div class="app-review-rating"><p>{{ review.rating }}/5.0</p></div>
+            <p class="app-review-text">{{ review.review_text }}</p>
+        </div>
+    {% endfor %}
+    </div>
 {% endblock %}
