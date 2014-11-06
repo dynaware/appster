@@ -115,7 +115,7 @@ class Review(models.Model):
 	"""
 	rating = models.SmallIntegerField()
 	application = models.ForeignKey(Application)
-	review_text = models.TextField()
+	review_text = models.TextField(null=True)
 
 	def save_model(self, request, obj, form, change):
 		if getattr(obj, 'author', None) is None:
