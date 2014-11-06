@@ -58,6 +58,11 @@
     <div class="row">
         <hr/>
         {% if app.review_set.all %}
+            <div class="row">
+                <div class="large-6">
+                    <h2>Reviews</h2>
+                </div>
+            </div>
             {% for review in app.review_set.all %}
                 <div class="large-6 columns">
                     <h4>{{ review.author }}</h4>
