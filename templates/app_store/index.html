@@ -1,13 +1,20 @@
 {% extends 'foundation/base.html' %}
 
 {% block base_body %}
-    <h1>Our Apps:</h1>
-    {% for app in apps %}
-        <div class="app">
-           <h2><a href="{% url 'detail' app.id %}">{{ app.name }}</a></h2>
-            {%  autoescape off %}
-                {{ app.description }}
-            {% endautoescape %}
+    <div class="row">
+        <div class="large-12 columns">
+            {% for app in apps %}
+                <a href="{% url 'detail' app.id %}">
+                    <div class="large-3 small-6 columns">
+                        <img src="http://placehold.it/1000x1000&text={{ app.name }}">
+
+                        <div class="panel">
+                            <h5>{{ app.name }}</h5>
+                            <h6 class="subheader">{{ app.rating }}/5.0</h6>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 {% endblock%}
