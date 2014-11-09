@@ -9,6 +9,10 @@ class Category(models.Model):
 		title:
 			The name of this category
 			(games, books, utilities)
+
+		description:
+			a description for this category
+			(Games, Games, and more Games!)
 	"""
 	title = models.CharField(max_length=20)
 	description = models.TextField(null=True)
