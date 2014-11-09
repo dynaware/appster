@@ -66,10 +66,18 @@ class Application(models.Model):
 
 		category:
 			The application's category
+
+		screenshot:
+			A url to a screenshot of this application
+
+		logo:
+			A url to this application's logo
 	"""
 	name = models.CharField(max_length=120)
 	description = models.TextField()
 	category = models.ForeignKey(Category)
+	screenshot = models.URLField(blank=True, null=True)
+	logo = models.URLField(blank=True, null=True)
 
 	@property
 	def rating(self):
