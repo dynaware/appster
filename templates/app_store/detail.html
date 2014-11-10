@@ -65,10 +65,13 @@
         <hr>
         <div class="large-12 columns">
             <h4>You might also like:</h4>
-            <img src="http://placehold.it/200x150&text=[img]">
-            <img src="http://placehold.it/200x150&text=[img]">
-            <img src="http://placehold.it/200x150&text=[img]">
-            <img src="http://placehold.it/200x150&text=[img]">
+            {% for related in related_apps %}
+                {% if related.logo %}
+                    <a href="{% url 'detail' related.id %}"><img src="{{ related.logo }}"></a>
+                {% else %}
+                    <a href="{% url 'detail' related.id %}"><img src="http://placehold.it/1000x1000&text={{ app.name }}"></a>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
