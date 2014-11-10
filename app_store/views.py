@@ -56,3 +56,14 @@ def categories(request):
 			'title': 'Browse Categories | Appster',
 		}
 	)
+
+
+def search(request):
+	return render(
+		request,
+		'app_store/search.html',
+		{
+			'results': Application.objects.all(),
+			'title': 'Search Results | Appster',
+		}
+	)
