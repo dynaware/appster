@@ -59,13 +59,11 @@ def categories(request):
 
 
 def search(request):
-	query = request.GET.get('query', '')
-	print(query)
 	return render(
 		request,
 		'app_store/search.html',
 		{
-			'results': Application.objects.filter(name__contains=query),
+			'results': Application.objects.all(),
 			'title': 'Search Results | Appster',
 		}
 	)
