@@ -1,0 +1,24 @@
+{% extends 'foundation/base.html' %}
+
+{% block base_body %}
+    <div class="row">
+        <div class="large-12 columns">
+            {% for app in results %}
+                <a href="{% url 'detail' app.id %}">
+                    <div class="large-3 small-6 columns">
+                        {% if app.logo %}
+                            <img src="{{ app.logo }}">
+                        {% else %}
+                            <img src="http://placehold.it/1000x1000&text={{ app.name }}">
+                        {% endif %}
+
+                        <div class="panel">
+                            <h5>{{ app.name }}</h5>
+                            <h6 class="subheader">{{ app.rating }}/5.0</h6>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock%}
