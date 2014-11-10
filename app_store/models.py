@@ -72,12 +72,17 @@ class Application(models.Model):
 
 		logo:
 			A url to this application's logo
+
+		click_count:
+			A counter of the times this application's detail
+			page was clicked and displayed
 	"""
 	name = models.CharField(max_length=120)
 	description = models.TextField()
 	category = models.ForeignKey(Category)
 	screenshot = models.URLField(blank=True, null=True)
 	logo = models.URLField(blank=True, null=True)
+	click_count = models.IntegerField(default=0, editable=False)
 
 	@property
 	def rating(self):
