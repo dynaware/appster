@@ -55,14 +55,14 @@
                 <h1><img src="http://placehold.it/400x100&text=Logo"></h1>
             </div>
             <div class="large-9 columns right">
-                <form>
+                <form action="{% url 'search' %}">
                     <div class="row collapse">
                         <div class="large-10 small-8 columns">
-                            <input type="text"/>
+                            <input type="text" name="query"/>
                         </div>
 
                         <div class="large-2 small-4 columns">
-                            <a href="#" class="postfix button expand">Search</a>
+                            <input type="submit" class="postfix button expand">Search</a>
                         </div>
                     </div>
                 </form>
