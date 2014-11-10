@@ -16,6 +16,8 @@ def index(request):
 
 def detail(request, app_id):
 	app = Application.objects.get(id=app_id)
+	app.click_count += 1
+	app.save()
 	return render(
 		request,
 		'app_store/detail.html',
