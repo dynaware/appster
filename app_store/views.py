@@ -66,7 +66,7 @@ def search(request):
 		request,
 		'app_store/search.html',
 		{
-			'results': Application.objects.filter(name__contains=query),
+			'results': Application.objects.filter(name__icontains=query),
 			'title': 'Search Results | Appster',
 		}
 	)
