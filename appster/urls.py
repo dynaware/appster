@@ -7,7 +7,7 @@ from appster import settings
 urlpatterns = patterns(
 	'',
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^app_store/', include(app_store.urls)),
+	url(r'^', include(app_store.urls)),
 	url(r'^$', include(app_store.urls)),
 )
 
