@@ -146,3 +146,9 @@ class Review(models.Model):
 		if getattr(obj, 'author', None) is None:
 			obj.author = request.user
 		obj.save()
+
+
+class ApplicationList(models.Model):
+
+
+class ApplicationListEntry (models.Model):
