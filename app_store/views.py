@@ -28,7 +28,7 @@ def detail(request, app_id):
 				Application.objects.filter(
 					category=app.category.id,
 				).exclude(
-					id = app.id,
+					id=app.id,
 				)[:4],
 				key=lambda x: x.rating, reverse=True
 			),
