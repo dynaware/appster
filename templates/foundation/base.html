@@ -53,6 +53,9 @@
 
     {% block top_search %}
         <div class="row">
+            {% block top_logo %}{% endblock %}
+        </div>
+        <div class="row">
             <div id="search-bar" class="large-offset-2 large-9 small-offset-3 small-6 columns">
                 <form action="{% url 'search' %}">
                     <div class="row collapse">
@@ -67,7 +70,6 @@
                 </form>
 
             </div>
-            {% block top_logo %}{% endblock %}
         </div>
     {% endblock top_search %}
 
