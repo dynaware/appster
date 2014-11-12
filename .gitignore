@@ -59,6 +59,5 @@ target/
 .idea/libraries/
 
 # Database
-db.sqlite3
 .idea/dataSources.ids
 .idea/dataSources.xml
