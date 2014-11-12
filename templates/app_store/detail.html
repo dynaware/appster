@@ -66,11 +66,13 @@
         <div class="large-12 columns">
             <h4>You might also like:</h4>
             {% for related in related_apps %}
-                {% if related.logo %}
-                    <a href="{% url 'detail' related.id %}"><img src="{{ related.logo }}"></a>
-                {% else %}
-                    <a href="{% url 'detail' related.id %}"><img src="http://placehold.it/1000x1000&text={{ app.name }}"></a>
-                {% endif %}
+                <div class="large-offset-1 large-2 small-offset-1 small-2 columns">
+                    {% if related.logo %}
+                        <a href="{% url 'detail' related.id %}"><img src="{{ related.logo }}"></a>
+                    {% else %}
+                        <a href="{% url 'detail' related.id %}"><img src="http://placehold.it/1000x1000&text={{ app.name }}"></a>
+                    {% endif %}
+                </div>
             {% endfor %}
         </div>
     </div>
