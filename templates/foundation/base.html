@@ -16,7 +16,9 @@
     {% endblock foundation_css %}
 
     {# Custom CSS #}
-    {% block css %}{% endblock css %}
+    {% block css %}
+    <link href="{% static "css/style.css" %}" rel="stylesheet"/>
+    {%  endblock css %}
 
     {# Override if you need another version of modernizr #}
     {% block foundation_modernizer %}
@@ -51,7 +53,7 @@
 
     {% block top_search %}
         <div class="row">
-            <div class="large-offset-2 large-9 small-offset-3 small-6 columns">
+            <div id="search-bar" class="large-offset-2 large-9 small-offset-3 small-6 columns">
                 <form action="{% url 'search' %}">
                     <div class="row collapse">
                         <div class="large-10 small-8 columns">
