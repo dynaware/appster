@@ -1,6 +1,14 @@
 from django.shortcuts import render
 
 from app_store.models import *
+from appster import settings
+
+
+def page_title(title):
+	if settings.database == 'sqlite':
+		return title + ' | DEBUG_DB'
+	else:
+		return title
 
 
 def index(request):
@@ -9,7 +17,7 @@ def index(request):
 		'app_store/index.html',
 		{
 			'apps': sorted(Application.objects.all(), key=lambda x: x.rating, reverse=True),
-			'title': 'Appster by Dynaware'
+			'title': page_title('Appster by Dynaware')
 		}
 	)
 
@@ -23,7 +31,7 @@ def detail(request, app_id):
 		'app_store/detail.html',
 		{
 			'app': app,
-			'title': '{} | Appster'.format(app.name),
+			'title': page_title('{} | Appster'.format(app.name)),
 			'related_apps': sorted(
 				Application.objects.filter(
 					category=app.category.id,
@@ -44,7 +52,7 @@ def category(request, category_id):
 		{
 			'category': category,
 			'apps': Application.objects.filter(category=category_id),
-			'title': '{} | Appster'.format(category.title),
+			'title': page_title('{} | Appster'.format(category.title)),
 		}
 	)
 
@@ -55,7 +63,7 @@ def categories(request):
 		'app_store/categories.html',
 		{
 			'categories': Category.objects.all(),
-			'title': 'Browse Categories | Appster',
+			'title': page_title('Browse Categories | Appster'),
 		}
 	)
 
@@ -67,6 +75,6 @@ def search(request):
 		'app_store/search.html',
 		{
 			'results': Application.objects.filter(name__icontains=query),
-			'title': 'Search Results | Appster',
+			'title': page_title('Search Results | Appster'),
 		}
 	)
