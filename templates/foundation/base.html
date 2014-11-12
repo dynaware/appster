@@ -33,7 +33,7 @@
 
                 <li class="name">
                     <h1>
-                        <a href="/">Appster</a>
+                        <a href="/">Home</a>
                     </h1>
                 </li>
                 <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
@@ -51,10 +51,7 @@
 
     {% block top_search %}
         <div class="row">
-            <div class="large-3 columns">
-                <h1><img src="{% static 'webLogo.png' %}"></h1>
-            </div>
-            <div class="large-9 columns right">
+            <div class="large-offset-2 large-9 small-offset-3 small-6 columns">
                 <form action="{% url 'search' %}">
                     <div class="row collapse">
                         <div class="large-10 small-8 columns">
@@ -68,6 +65,7 @@
                 </form>
 
             </div>
+            {% block top_logo %}{% endblock %}
         </div>
     {% endblock top_search %}
 
