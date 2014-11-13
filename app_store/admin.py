@@ -15,6 +15,16 @@ class ReviewInline(admin.TabularInline):
 class ApplicationAdmin(admin.ModelAdmin):
 	inlines = [ForeignApplicationInline, ReviewInline]
 
+
+class ApplicationListEntryInline(admin.TabularInline):
+	model = ApplicationListEntry
+	extra = 1
+
+
+class ApplicationListAdmin(admin.ModelAdmin):
+	inlines = [ApplicationListEntryInline]
+
+admin.site.register(ApplicationList, ApplicationListAdmin)
 admin.site.register(Application, ApplicationAdmin)
 admin.site.register(ForeignRepo)
 admin.site.register(Category)
