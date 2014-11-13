@@ -149,6 +149,14 @@ class Review(models.Model):
 
 
 class ApplicationList(models.Model):
+	name = models.CharField(max_length=25)
+
+	def save_model(self, request, obj, form, change):
+		if getattr(obj, 'author', None) is None:
+			obj.author = request.user
+		obj.save()
 
 
 class ApplicationListEntry (models.Model):
+	application = models.ForeignKey(Application)
+	list = models.ForeignKey(ApplicationList)
