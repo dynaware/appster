@@ -78,3 +78,27 @@ def search(request):
 			'title': page_title('Search Results | Appster'),
 		}
 	)
+
+
+def app_lists(request):
+	return render(
+		request,
+		'app_store/app_lists.html',
+		{
+			'lists': ApplicationList.objects.all(),
+			'title': page_title('Application Lists | Appster')
+		}
+	)
+
+
+def app_list(request, list_id):
+	list = ApplicationList.objects.get(id=list_id)
+	return render(
+		request,
+		'app_store/app_list.html',
+		{
+			'app_list': list,
+			'apps': [i.application for i in list.applicationlistentry_set.all()],
+			'title': page_title('{} | Appster'.format(list.name)),
+		}
+	)
