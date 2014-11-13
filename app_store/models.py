@@ -149,6 +149,15 @@ class Review(models.Model):
 
 
 class ApplicationList(models.Model):
+	"""
+	Fields:
+		name:
+			The name of the ApplicationLIst
+
+		author:
+			The owner of this application list, the user who created it
+	"""
+
 	name = models.CharField(max_length=25)
 
 	def save_model(self, request, obj, form, change):
@@ -157,6 +166,14 @@ class ApplicationList(models.Model):
 		obj.save()
 
 
-class ApplicationListEntry (models.Model):
+class ApplicationListEntry(models.Model):
+	"""
+	Fields:
+		application:
+			The application that this entry refers to
+
+		list:
+			The ApplicationLIst that this entry belongs to
+	"""
 	application = models.ForeignKey(Application)
 	list = models.ForeignKey(ApplicationList)
