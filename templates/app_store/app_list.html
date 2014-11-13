@@ -1,0 +1,43 @@
+{%  extends 'foundation/base.html' %}
+
+{% block base_body %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="row">
+
+                <div class="large-4 small-12 columns">
+
+                    <img src="http://placehold.it/500x500&text={{ category.title }}">
+
+                    <div class="hide-for-small panel">
+                        <h3>{{ app_list.name }}</h3>
+                        <h5 class="subheader">{{ app_list.description }}</h5>
+                    </div>
+                </div>
+
+                <div class="large-8 columns">
+                    <div class="row">
+
+                    {% for app in apps %}
+                        <a href="{% url 'detail' app.id %}">
+                            <div class="large-4 small-6 columns">
+                                {% if app.logo %}
+                                    <img src="{{ app.logo }}">
+                                {% else %}
+                                    <img src="http://placehold.it/1000x1000&text={{ app.name }}">
+                                {% endif %}
+
+                                <div class="panel">
+                                    <h5>{{ app.name }}</h5>
+                                    <h6 class="subheader">{{ app.rating }}/5.0</h6>
+                                </div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
