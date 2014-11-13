@@ -1,0 +1,32 @@
+{% extends 'foundation/base.html' %}
+
+{% block base_body %}
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="row">
+
+                <div class="large-4 small-12 columns">
+
+                    <img src="http://placehold.it/500x500&text=Categories">
+
+                    <div class="hide-for-small panel">
+                        <h3>App Lists</h3>
+                        <h5 class="subheader">Here is a list of all the user created app lists.</h5>
+                    </div>
+                </div>
+
+                {% for app_list in lists %}
+                    <a href="{% url 'app_list' app_list.id %}">
+                        <div class="large-2 small-6 columns">
+                            <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+
+                            <div class="panel">
+                                <h5>{{ app_list.name }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock%}
