@@ -18,7 +18,11 @@
                 {% for app_list in lists %}
                     <a href="{% url 'app_list' app_list.id %}">
                         <div class="large-2 small-6 columns">
-                            <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+                            {% if app_list.image %}
+                                <img src="{{ app_list.image }}">
+                            {% else %}
+                                <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+                            {% endif %}
 
                             <div class="panel">
                                 <h5>{{ app_list.name }}</h5>
