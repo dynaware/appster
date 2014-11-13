@@ -156,9 +156,13 @@ class ApplicationList(models.Model):
 
 		author:
 			The owner of this application list, the user who created it
+
+		image:
+			a URL pointing to an image to use for this ApplicationList
 	"""
 
 	name = models.CharField(max_length=25)
+	image = models.URLField()
 
 	def save_model(self, request, obj, form, change):
 		if getattr(obj, 'author', None) is None:
