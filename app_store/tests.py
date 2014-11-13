@@ -29,7 +29,7 @@ class TestApplicationModel(TestCase):
 			repository=play_store,
 			application=dropbox,
 			app_id='com.dropbox',
-			)
+		)
 
 	def test_application_ratings(self):
 		dropbox = Application.objects.get(name='Dropbox')
