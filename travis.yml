@@ -8,6 +8,7 @@ script:
 deploy:
   provider: heroku
   run: "python manage.py migrate"
+  strategy: git
   api_key:
     secure: dvRqu5TG91e+0v3ne63C0VUn2e9ZGpDbbd/WgRB3i+hHDJSzOcEbTLkPiAKAagwt3BWxn/2ab2fafNha8rmHxrtlCBpJfozer59+HDEndC00d0Rn1OG7UaMtgsa/SLCmfejS+GPpGhFtUe+cBrV9cLW355SOpTBejNZYr6/gCFM=
   app: dynaware
