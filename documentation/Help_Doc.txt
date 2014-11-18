@@ -1,0 +1,5 @@
+Appster allows its users to search for apps from multiple app stores, such as Apple's App Store and Google Play. They can use categories to sort the apps and store ones they like.
+
+For each app there is information such as a summary of the app, reviews and ratings of the app, and links to the app stores where it may be purchased. 
+
+Users will be able to use the search function to find a specific app they are looking for. 
