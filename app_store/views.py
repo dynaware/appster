@@ -89,6 +89,7 @@ def search(request):
 		{
 			'results': sorted(Application.objects.filter(name__icontains=query), key=k, reverse=r),
 			'title': page_title('Search Results | Appster'),
+			'query': query,
 		}
 	)
 
