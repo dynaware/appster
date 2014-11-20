@@ -70,11 +70,24 @@ def categories(request):
 
 def search(request):
 	query = request.GET.get('query', '')
+	sort_key = request.GET.get('sort', '-rating')
+
+	r = False
+	if sort_key.startswith('-'):
+		r = True
+
+	if 'rating' in sort_key:
+		k = lambda x: x.rating
+	elif 'name' in sort_key:
+		k = lambda x: x.name
+	else:
+		k = lambda x: x.rating
+
 	return render(
 		request,
 		'app_store/search.html',
 		{
-			'results': Application.objects.filter(name__icontains=query),
+			'results': sorted(Application.objects.filter(name__icontains=query), key=k, reverse=r),
 			'title': page_title('Search Results | Appster'),
 		}
 	)
