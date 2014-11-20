@@ -67,7 +67,11 @@
                 <form action="{% url 'search' %}">
                     <div class="row collapse">
                         <div class="large-10 small-8 columns">
-                            <input type="text" name="query"/>
+                            {% if query %}
+                                <input type="text" name="query" value="{{ query }}"/>
+                            {% else %}
+                                <input type="text" name="query"/>
+                            {% endif %}
                         </div>
 
                         <div class="large-2 small-4 columns">
