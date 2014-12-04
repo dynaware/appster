@@ -11,23 +11,25 @@
     <div class="row">
         <div class="large-12 columns">
             {% for app in apps %}
-                <a href="{% url 'detail' app.id %}">
-                    <div class="large-3 small-6 columns">
-                        {% if app.logo %}
-                            <img src="{{ app.logo }}">
-                        {% else %}
-                            <img src="http://placehold.it/1000x1000&text={{ app.name }}">
-                        {% endif %}
+                {% if forloop.counter|divisibleby:"4" %}<div class="row">{% endif %}
+                    <a href="{% url 'detail' app.id %}">
+                        <div class="large-3 small-6 columns">
+                            {% if app.logo %}
+                                <img src="{{ app.logo }}">
+                            {% else %}
+                                <img src="http://placehold.it/1000x1000&text={{ app.name }}">
+                            {% endif %}
 
-                        <div class="panel">
-                            <h5>{{ app.name }}</h5>
-                            <h6 class="subheader">{{ app.rating }}/5.0</h6>
-                            {% for platform in app.foreignapplication_set.all %}
-                                <img class="platform-logo" src="{{ platform.repository.logo }}"></img>
-                            {% endfor %}
+                            <div class="panel">
+                                <h5>{{ app.name }}</h5>
+                                <h6 class="subheader">{{ app.rating }}/5.0</h6>
+                                {% for platform in app.foreignapplication_set.all %}
+                                    <img class="platform-logo" src="{{ platform.repository.logo }}"></img>
+                                {% endfor %}
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                {% if forloop.last or forloop.counter|divisibleby:"4" %}</div>{% endif %}
             {% endfor %}
         </div>
     </div>
