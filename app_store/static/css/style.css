@@ -1,3 +1,9 @@
 div#search-bar {
     margin-top: 1.2em;
 }
+
+i#new-app-list {
+    font-size: 4em;
+    text-align: center;
+    display: block;
+}

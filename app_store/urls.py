@@ -11,4 +11,5 @@ urlpatterns = patterns(
 	url(r'^search$', views.search, name='search'),
 	url(r'^app_lists$', views.app_lists, name='app_lists'),
 	url(r'app_list/(?P<list_id>\d+)/$', views.app_list, name='app_list'),
+	url(r'app_list$', views.app_list, name='new_app_list'),
 )
