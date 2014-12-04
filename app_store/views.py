@@ -21,6 +21,7 @@ def index(request):
 			'apps': sorted(Application.objects.filter(approved=True), key=lambda x: x.rating, reverse=True),
 			'title': page_title('Appster by Dynaware'),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -44,6 +45,7 @@ def detail(request, app_id):
 				key=lambda x: x.rating, reverse=True
 			),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -58,6 +60,7 @@ def category(request, category_id):
 			'apps': Application.objects.filter(category=category_id, approved=True),
 			'title': page_title('{} | Appster'.format(category.title)),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -70,6 +73,7 @@ def categories(request):
 			'categories': Category.objects.all(),
 			'title': page_title('Browse Categories | Appster'),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -97,6 +101,7 @@ def search(request):
 			'title': page_title('Search Results | Appster'),
 			'query': query,
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -109,6 +114,7 @@ def app_lists(request):
 			'lists': ApplicationList.objects.all(),
 			'title': page_title('Application Lists | Appster'),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -123,6 +129,7 @@ def app_list(request, list_id):
 			'apps': [i.application for i in list.applicationlistentry_set.all()],
 			'title': page_title('{} | Appster'.format(list.name)),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -145,6 +152,7 @@ def new_review(request, app_id):
 			'logged_in': request.user.is_authenticated(),
 			'form': forms.ReviewForm,
 			'app': app,
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -167,6 +175,7 @@ def new_application(request):
 			'logged_in': request.user.is_authenticated(),
 			'form': forms.NewApp,
 			'alert': alert,
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -183,6 +192,7 @@ def review_applications(request):
 			'title': page_title('Review App Submissions | Appster'),
 			'apps': Application.objects.filter(approved=False),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)
 
@@ -205,5 +215,6 @@ def review_application(request, app_id, choice):
 			'title': page_title('Review App Submissions | Appster'),
 			'apps': Application.objects.filter(approved=False),
 			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
 		}
 	)

@@ -48,6 +48,16 @@
             <section class="top-bar-section">
 
                 <ul class="right">
+                    {% if staff %}
+                        <li class="divider"></li>
+                        <li class="has-dropdown not-click">
+                            <a href="#">STAFF</a>
+                            <ul class="dropdown">
+                                <li><a href="{% url 'review_apps' %}">Review Application Requests</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
                     <li class="divider"></li>
                     <li><a href="#">Help</a></li>
                     <li class="divider"></li>
