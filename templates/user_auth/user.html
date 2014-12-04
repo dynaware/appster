@@ -27,7 +27,7 @@
             <h3>App Lists</h3>
             {% for app_list in lists %}
                 <a href="{% url 'app_list' app_list.id %}">
-                    <div class="large-2 small-6 columns">
+                    <div class="large-4 small-6 columns">
                         {% if app_list.image %}
                             <img src="{{ app_list.image }}">
                         {% else %}
