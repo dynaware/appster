@@ -26,19 +26,21 @@
 
             <h3>App Lists</h3>
             {% for app_list in lists %}
-                <a href="{% url 'app_list' app_list.id %}">
-                    <div class="large-4 small-6 columns">
-                        {% if app_list.image %}
-                            <img src="{{ app_list.image }}">
-                        {% else %}
-                            <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
-                        {% endif %}
+                {% if forloop.counter|divisibleby:"3" %}<div class="row">{% endif %}
+                    <a href="{% url 'app_list' app_list.id %}">
+                        <div class="large-4 small-6 columns">
+                            {% if app_list.image %}
+                                <img src="{{ app_list.image }}">
+                            {% else %}
+                                <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+                            {% endif %}
 
-                        <div class="panel">
-                            <h5>{{ app_list.name }}</h5>
+                            <div class="panel">
+                                <h5>{{ app_list.name }}</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                {% if forloop.last or forloop.counter|divisibleby:"3" %}</div>{% endif %}
             {% endfor %}
         </div>
     </div>

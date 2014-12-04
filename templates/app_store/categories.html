@@ -16,15 +16,17 @@
                 </div>
 
                 {% for category in categories %}
-                    <a href="{% url 'category' category.id %}">
-                        <div class="large-2 small-6 columns">
-                            <img src="http://placehold.it/1000x1000&text={{ category.title }}">
+                    {% if forloop.counter|divisibleby:"4" %}<div class="row">{% endif %}
+                        <a href="{% url 'category' category.id %}">
+                            <div class="large-2 small-6 columns">
+                                <img src="http://placehold.it/1000x1000&text={{ category.title }}">
 
-                            <div class="panel">
-                                <h5>{{ category.title }}</h5>
+                                <div class="panel">
+                                    <h5>{{ category.title }}</h5>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    {% if forloop.last or forloop.counter|divisibleby:"4" %}</div>{% endif %}
                 {% endfor %}
             </div>
         </div>

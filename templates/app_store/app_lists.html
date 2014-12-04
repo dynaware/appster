@@ -15,21 +15,28 @@
                     </div>
                 </div>
 
-                {% for app_list in lists %}
-                    <a href="{% url 'app_list' app_list.id %}">
-                        <div class="large-2 small-6 columns">
-                            {% if app_list.image %}
-                                <img src="{{ app_list.image }}">
-                            {% else %}
-                                <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
-                            {% endif %}
 
-                            <div class="panel">
-                                <h5>{{ app_list.name }}</h5>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
+                <div class="large-8 columns">
+                    <div class="row">
+                        {% for app_list in lists %}
+                            {% if forloop.counter|divisibleby:"4" %}<div class="row">{% endif %}
+                                <a href="{% url 'app_list' app_list.id %}">
+                                    <div class="large-3 small-6 columns">
+                                        {% if app_list.image %}
+                                            <img src="{{ app_list.image }}">
+                                        {% else %}
+                                            <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+                                        {% endif %}
+
+                                        <div class="panel">
+                                            <h5>{{ app_list.name }}</h5>
+                                        </div>
+                                    </div>
+                                </a>
+                            {% if forloop.last or forloop.counter|divisibleby:"4" %}</div>{% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
