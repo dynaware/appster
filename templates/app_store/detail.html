@@ -40,25 +40,27 @@
 
     <div class="row">
         <hr/>
-        {% if app.review_set.all %}
-            <div class="row">
-                <div class="large-6 small-6 small-offset-1">
-                    <h2>Reviews</h2>
-                </div>
+        <div class="row">
+            <div class="large-6 small-6">
+                <h2>Reviews</h2>
+                {% if logged_in %}
+                    <a href="{% url 'new_review' app.id %}">Write a Review</a>
+                {% endif %}
             </div>
-            {% for review in app.review_set.all %}
+            {% if app.review_set.all %}
+                {% for review in app.review_set.all %}
+                    <div class="large-6 columns">
+                        <h4>{{ review.author }}</h4>
+                        <h5>{{ review.rating }}/5</h5>
+                        {% if review.review_text %}<p>{{ review.review_text }}</p>{% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
                 <div class="large-6 columns">
-                    <h4>{{ review.author }}</h4>
-                    <h5>{{ review.rating }}/5</h5>
-                    {% if review.review_text %}<p>{{ review.review_text }}</p>{% endif %}
+                    <p>Eventually, some nice person will come along and write a review for {{ app.name }}. I hope to be there when that day comes.</p>
                 </div>
-            {% endfor %}
-        {% else %}
-            <div class="large-6 columns">
-                <h4>Reviews</h4>
-                <p>Eventually, some nice person will come along and write a review for {{ app.name }}. I hope to be there when that day comes.</p>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
 
     <div class="row">
