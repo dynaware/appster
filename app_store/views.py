@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
 from app_store.models import *
 from appster import settings
+from app_store import forms
 
 
 def page_title(title):
@@ -121,5 +123,25 @@ def app_list(request, list_id):
 			'apps': [i.application for i in list.applicationlistentry_set.all()],
 			'title': page_title('{} | Appster'.format(list.name)),
 			'logged_in': request.user.is_authenticated(),
+		}
+	)
+
+
+@login_required
+def new_review(request, app_id):
+	if request.POST:
+		review = forms.ReviewForm(request.POST)
+		review.save()
+
+		app_id = int(review.POST.get('app_id', 1))
+		return detail(request, app_id)
+
+	return render(
+		request,
+		'app_store/new_review.html',
+		{
+			'title': page_title('New Review | Appster'),
+			'logged_in': request.user.is_authenticated(),
+			'form': forms.ReviewForm,
 		}
 	)
