@@ -47,6 +47,16 @@
 
             <section class="top-bar-section">
 
+                <ul class="left">
+                    <li class="divider"></li>
+                    <li><a href="{% url 'categories' %}">Categories</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{% url 'app_lists' %}">App Lists</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Help</a></li>
+                    <li class="divider"></li>
+                </ul>
+
                 <ul class="right">
                     {% if staff %}
                         <li class="divider"></li>
@@ -58,12 +68,6 @@
                         </li>
                     {% endif %}
 
-                    <li class="divider"></li>
-                    <li><a href="#">Help</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{% url 'app_lists' %}">App Lists</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{% url 'categories' %}">Categories</a></li>
                     <li class="divider"></li>
                     {% if logged_in %}
                         <li><a href="{% url 'logout' %}">Logout</a></li>
