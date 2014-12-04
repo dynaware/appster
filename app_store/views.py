@@ -169,3 +169,41 @@ def new_application(request):
 			'alert': alert,
 		}
 	)
+
+
+@login_required(login_url='/auth/login')
+def review_applications(request):
+	if not request.user.is_staff:
+		return index(request)
+
+	return render(
+		request,
+		'app_store/review_apps.html',
+		{
+			'title': page_title('Review App Submissions | Appster'),
+			'apps': Application.objects.filter(approved=False),
+			'logged_in': request.user.is_authenticated(),
+		}
+	)
+
+@login_required(login_url='/auth/login')
+def review_application(request, app_id, choice):
+	if not request.user.is_staff:
+		return index(request)
+
+	app = Application.objects.get(id=app_id)
+	if choice == '0':
+		app.delete()
+	if choice == '1':
+		app.approved = True
+		app.save()
+
+	return render(
+		request,
+		'app_store/review_apps.html',
+		{
+			'title': page_title('Review App Submissions | Appster'),
+			'apps': Application.objects.filter(approved=False),
+			'logged_in': request.user.is_authenticated(),
+		}
+	)
