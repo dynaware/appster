@@ -1,17 +1,37 @@
 {%  extends 'foundation/base.html' %}
 
 {% block base_body %}
-	{{ state }}
+
+    <div class="row">
+        <div class="large-offset-3 large-5 small-10 columns">
+            {{ state }}
+        </div>
+    </div>
+
 	<form action="{% url 'login' %}" method="post">
 		{% if next %}
 		<input type="hidden" name="next" value="{{ next }}" />
 		{% endif %}
-		username:
-		<input type="text" name="username" value="{{ username}}" /><br />
-		password:
-		<input type="password" name="password" value="" /><br />
 
-		<input type="submit" value="Log In" />
+        <div class="row">
+            <div class="large-offset-3 large-5 small-10 columns">
+                <label>Username
+                    <input type="text" name="username" value="{{ username}}" /><br />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-offset-3 large-5 small-10 columns">
+                Password
+                <input type="password" name="password" value="" /><br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-offset-3 large-5 small-10 columns">
+                <input type="submit" value="Log In" />
+            </div>
+        </div>
 
         {% csrf_token %}
 	</form>
