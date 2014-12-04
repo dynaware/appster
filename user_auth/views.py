@@ -102,9 +102,7 @@ def app_list(request):
 		if form.is_valid():
 			form.save()
 
-			return user(request)
-		else:
-			form = forms.AppListForm()
+			return HttpResponseRedirect(reverse('user'))
 
 
 	return render(
