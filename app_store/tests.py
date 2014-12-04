@@ -10,29 +10,27 @@ def dropbox():
 
 class TestApplicationModel(TestCase):
 	def setUp(self):
-		Category.objects.create(title='Productivity')
-		Application.objects.create(
+		self.productivity = Category.objects.create(title='Productivity')
+		self.dropbox = Application.objects.create(
 			name='Dropbox',
 			description='',
-			category=Category.objects.get(title='Productivity')
+			category=self.productivity,
 		)
 		Application.objects.create(
 			name='Google Drive',
 			description='',
-			category=Category.objects.get(title='Productivity')
+			category=self.productivity,
 		)
-		ForeignRepo.objects.create(
+		self.play_store = ForeignRepo.objects.create(
 			name='Google Play Store',
 			url='http://play.google.com',
 			app_url='http://play.google.com/?app={APP_ID}',
 			platform='Android'
 		)
 
-		play_store = ForeignRepo.objects.get(name='Google Play Store')
-
-		ForeignApplication.objects.create(
-			repository=play_store,
-			application=dropbox(),
+		self.foreign_app = ForeignApplication.objects.create(
+			repository=self.play_store,
+			application=self.dropbox,
 			app_id='com.dropbox',
 		)
 
@@ -40,16 +38,16 @@ class TestApplicationModel(TestCase):
 		for i in (1, 2, 3, 3, 3, 3, 4, 5, 5, 5):
 			Review.objects.create(
 				rating=i,
-				application=dropbox()
+				application=self.dropbox,
 			)
-		self.assertEqual(dropbox().rating, 3.4)
+		self.assertEqual(self.dropbox.rating, 3.4)
 
 	def test_foreign_repo_url(self):
-		play_store_dropbox = ForeignApplication.objects.get(app_id='com.dropbox')
+		play_store_dropbox = self.foreign_app
 		self.assertEqual(str(play_store_dropbox), 'http://play.google.com/?app=com.dropbox')
 
 	def test_click_count(self):
-		url = '/app/{}/'.format(dropbox().id)
+		url = '/app/{}/'.format(self.dropbox.id)
 		c = Client()
 
 		for _ in range(100):
