@@ -137,6 +137,7 @@ def new_review(request, app_id):
 		'app_store/form.html',
 		{
 			'title': page_title('New Review | Appster'),
+			'subtitle': app.name,
 			'form_name': 'New Review',
 			'form': forms.ReviewForm,
 			'app': app,
