@@ -163,7 +163,7 @@ def new_application(request):
 			'form_name': 'New Application Request',
 			'form': forms.NewApp,
 			'alert': alert,
-			'url': reverse('new_application'),
+			'url': reverse('new_app'),
 		}
 	)
 
