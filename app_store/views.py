@@ -127,13 +127,14 @@ def app_list(request, list_id):
 	)
 
 
-@login_required
+@login_required(login_url='/auth/login')
 def new_review(request, app_id):
+	app = Application.objects.get(id=app_id)
 	if request.POST:
-		review = forms.ReviewForm(request.POST)
-		review.save()
+		review = Review(application=app)
+		form = forms.ReviewForm(request.POST, instance=review)
+		form.save()
 
-		app_id = int(review.POST.get('app_id', 1))
 		return detail(request, app_id)
 
 	return render(
@@ -143,5 +144,6 @@ def new_review(request, app_id):
 			'title': page_title('New Review | Appster'),
 			'logged_in': request.user.is_authenticated(),
 			'form': forms.ReviewForm,
+			'app': app,
 		}
 	)
