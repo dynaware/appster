@@ -131,8 +131,7 @@ def new_review(request, app_id):
 		form = forms.ReviewForm(request.POST, instance=review)
 		if form.is_valid():
 			form.save()
-
-		return detail(request, app_id)
+			return HttpResponseRedirect(reverse('detail', args=(app_id,)))
 
 	return render(
 		request,

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class Category(models.Model):
@@ -129,6 +130,14 @@ class ForeignApplication(models.Model):
 		return self.repository.app_url.format(APP_ID=self.app_id)
 
 
+from django.core.exceptions import ValidationError
+
+
+def validate_review_range(value):
+	if value < 1 or value > 5:
+		raise ValidationError('Rating must be between 1 and 5')
+
+
 class Review(models.Model):
 	"""
 	Single instance of an application's review.
@@ -146,7 +155,7 @@ class Review(models.Model):
 		review_text:
 			The text of this review, does not have to be filled.
 	"""
-	rating = models.SmallIntegerField()
+	rating = models.SmallIntegerField(validators=[validate_review_range])
 	application = models.ForeignKey(Application)
 	review_text = models.TextField(null=True)
 	author = models.ForeignKey(User, null=True)
