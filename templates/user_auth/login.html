@@ -4,7 +4,10 @@
 
     <div class="row">
         <div class="large-offset-3 large-5 small-10 columns">
-            {{ state }}
+            <div data-alert class="alert-box {{ alert_level }}">
+                {{ state }}
+                <a href="#" class="close">&times;</a>
+            </div>
         </div>
     </div>
 

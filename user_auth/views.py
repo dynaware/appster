@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login
 
 
 def login_user(request):
-	state = "Please log in below..."
+	state = 'Please log in below...'
+	alert_level = ''
 	username = ''
 	if request.POST:
 		username = request.POST.get('username')
@@ -13,10 +14,21 @@ def login_user(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				state = "You're successfully logged in!"
+				state = 'You\'re successfully logged in!'
+				alert_level = 'success'
 			else:
-				state = "Your account is not active, please contact the site admin."
+				state = 'Your account is not active, please contact the site admin.'
+				alert_level = 'warn'
 		else:
-			state = "Your username and/or password were incorrect."
+			state = 'Your username and/or password were incorrect.'
+			alert_level = 'alert'
 
-	return render(request, 'user_auth/login.html', {'state': state, 'username': username})
+	return render(
+		request,
+		'user_auth/login.html',
+		{
+			'state': state,
+			'username': username,
+			'alert_level': alert_level,
+		}
+	)
