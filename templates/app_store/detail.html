@@ -50,7 +50,7 @@
             {% if app.review_set.all %}
                 {% for review in app.review_set.all %}
                     <div class="large-6 columns">
-                        <h4>{{ review.author }}</h4>
+                        {% if review.author %}<h4>{{ review.author }}</h4>{% endif %}
                         <h5>{{ review.rating }}/5</h5>
                         {% if review.review_text %}<p>{{ review.review_text }}</p>{% endif %}
                     </div>
