@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
+from django.contrib.auth.forms import UserCreationForm
 
 from app_store.views import page_title
 
@@ -50,3 +52,20 @@ def login_user(request):
 def logout_user(request):
 	logout(request)
 	return login_user(request)
+
+
+def register_user(request):
+	if request.POST:
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/')
+	else:
+		return render(
+			request,
+			'user_auth/signup.html',
+			{
+				'form': UserCreationForm,
+				'title': page_title('Signup | Appster'),
+			}
+		)
