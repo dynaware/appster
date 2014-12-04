@@ -43,7 +43,7 @@
         <div class="row">
             <div class="large-6 small-6">
                 <h2>Reviews</h2>
-                {% if logged_in %}
+                {% if user.is_authenticated %}
                     <a href="{% url 'new_review' app.id %}">Write a Review</a>
                 {% endif %}
             </div>

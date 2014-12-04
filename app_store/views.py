@@ -20,8 +20,6 @@ def index(request):
 		{
 			'apps': sorted(Application.objects.filter(approved=True), key=lambda x: x.rating, reverse=True),
 			'title': page_title('Appster by Dynaware'),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -44,8 +42,6 @@ def detail(request, app_id):
 				)[:4],
 				key=lambda x: x.rating, reverse=True
 			),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -59,8 +55,6 @@ def category(request, category_id):
 			'category': category,
 			'apps': Application.objects.filter(category=category_id, approved=True),
 			'title': page_title('{} | Appster'.format(category.title)),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -72,8 +66,6 @@ def categories(request):
 		{
 			'categories': Category.objects.all(),
 			'title': page_title('Browse Categories | Appster'),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -100,8 +92,6 @@ def search(request):
 			'results': sorted(Application.objects.filter(name__icontains=query, approved=True), key=k, reverse=r),
 			'title': page_title('Search Results | Appster'),
 			'query': query,
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -113,8 +103,6 @@ def app_lists(request):
 		{
 			'lists': ApplicationList.objects.all(),
 			'title': page_title('Application Lists | Appster'),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -128,8 +116,6 @@ def app_list(request, list_id):
 			'app_list': list,
 			'apps': [i.application for i in list.applicationlistentry_set.all()],
 			'title': page_title('{} | Appster'.format(list.name)),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -149,10 +135,8 @@ def new_review(request, app_id):
 		'app_store/new_review.html',
 		{
 			'title': page_title('New Review | Appster'),
-			'logged_in': request.user.is_authenticated(),
 			'form': forms.ReviewForm,
 			'app': app,
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -172,10 +156,8 @@ def new_application(request):
 		'app_store/new_app.html',
 		{
 			'title': page_title('Request New App | Appster'),
-			'logged_in': request.user.is_authenticated(),
 			'form': forms.NewApp,
 			'alert': alert,
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -191,8 +173,6 @@ def review_applications(request):
 		{
 			'title': page_title('Review App Submissions | Appster'),
 			'apps': Application.objects.filter(approved=False),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -214,8 +194,6 @@ def review_application(request, app_id, choice):
 		{
 			'title': page_title('Review App Submissions | Appster'),
 			'apps': Application.objects.filter(approved=False),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)
 
@@ -226,7 +204,5 @@ def about(request):
 		'app_store/about.html',
 		{
 			'title': page_title('About | Appster'),
-			'logged_in': request.user.is_authenticated(),
-			'staff': request.user.is_staff,
 		}
 	)

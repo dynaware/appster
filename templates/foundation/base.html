@@ -58,7 +58,7 @@
                 </ul>
 
                 <ul class="right">
-                    {% if staff %}
+                    {% if user.is_staff %}
                         <li class="divider"></li>
                         <li class="has-dropdown not-click">
                             <a href="#">STAFF</a>
@@ -69,7 +69,7 @@
                     {% endif %}
 
                     <li class="divider"></li>
-                    {% if logged_in %}
+                    {% if user.is_authenticated %}
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Login</a></li>

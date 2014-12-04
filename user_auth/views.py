@@ -44,9 +44,7 @@ def login_user(request):
 			'state': state,
 			'username': username,
 			'alert_level': alert_level,
-			'logged_in': logged_in,
 			'title': page_title('Login | Appster'),
-			'staff': request.user.is_staff,
 		}
 	)
 
