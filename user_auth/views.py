@@ -61,6 +61,7 @@ def logout_user(request):
 
 
 def register_user(request):
+	form = UserCreationForm()
 	if request.POST:
 		form = UserCreationForm(request.POST)
 		if form.is_valid():
@@ -71,7 +72,7 @@ def register_user(request):
 			request,
 			'app_store/form.html',
 			{
-				'form': UserCreationForm,
+				'form': form,
 				'form_name': 'Sign Up for a New Account',
 				'title': page_title('Signup | Appster'),
 				'url': reverse('signup'),

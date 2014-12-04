@@ -125,10 +125,12 @@ def app_list(request, list_id):
 @login_required(login_url='/auth/login')
 def new_review(request, app_id):
 	app = Application.objects.get(id=app_id)
+	form = forms.ReviewForm()
 	if request.POST:
 		review = Review(application=app, author=request.user)
 		form = forms.ReviewForm(request.POST, instance=review)
-		form.save()
+		if form.is_valid():
+			form.save()
 
 		return detail(request, app_id)
 
@@ -139,7 +141,7 @@ def new_review(request, app_id):
 			'title': page_title('New Review | Appster'),
 			'subtitle': app.name,
 			'form_name': 'New Review',
-			'form': forms.ReviewForm,
+			'form': form,
 			'app': app,
 			'url': reverse('new_review', args=(app_id,)),
 		}
@@ -148,11 +150,13 @@ def new_review(request, app_id):
 @login_required(login_url='/auth/login')
 def new_application(request):
 	alert = None
+	form = forms.NewApp()
 
 	if request.POST:
 		app = Application(approved=False)
 		form = forms.NewApp(request.POST, instance=app)
-		form.save()
+		if form.is_valid():
+			form.save()
 
 		alert = 'Application was created successfully, Appster staff will review your request'
 
@@ -162,7 +166,7 @@ def new_application(request):
 		{
 			'title': page_title('Request New App | Appster'),
 			'form_name': 'New Application Request',
-			'form': forms.NewApp,
+			'form': form,
 			'alert': alert,
 			'url': reverse('new_app'),
 		}
@@ -228,8 +232,6 @@ def new_app_list_entry(request, app_id):
 		if form.is_valid():
 			list_entry = form.save()
 			return HttpResponseRedirect(reverse('app_list', args=(list_entry.list.id,)))
-		else:
-			return new_app_list_entry(request, app_id)
 
 
 	return render(
