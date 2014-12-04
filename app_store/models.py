@@ -167,11 +167,7 @@ class ApplicationList(models.Model):
 
 	name = models.CharField(max_length=25)
 	image = models.URLField()
-
-	def save_model(self, request, obj, form, change):
-		if getattr(obj, 'author', None) is None:
-			obj.author = request.user
-		obj.save()
+	author = models.ForeignKey(User, null=True)
 
 
 class ApplicationListEntry(models.Model):
