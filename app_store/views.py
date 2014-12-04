@@ -140,7 +140,7 @@ def new_review(request, app_id):
 			'form_name': 'New Review',
 			'form': forms.ReviewForm,
 			'app': app,
-			'url': reverse('new_review'),
+			'url': reverse('new_review', args=(app_id,)),
 		}
 	)
 
