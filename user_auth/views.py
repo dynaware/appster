@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 from app_store.views import page_title
 from app_store.models import ApplicationList
+from user_auth import forms
 
 
 def login_user(request):
@@ -80,5 +81,32 @@ def user(request):
 		{
 			'title': page_title('Your Account | Appster'),
 			'lists': lists,
+		}
+	)
+
+
+@login_required(login_url='/auth/login')
+def app_list(request):
+	form = forms.AppListForm()
+
+	if request.POST:
+		app_list = ApplicationList(author=request.user)
+		form = forms.AppListForm(request.POST, instance=app_list)
+		if form.is_valid():
+			form.save()
+
+			return user(request)
+		else:
+			form = forms.AppListForm()
+
+
+	return render(
+		request,
+		'app_store/form.html',
+		{
+			'title': page_title('New App List | Appster'),
+			'form': form,
+			'form_name': 'New App List',
+			'url': '/auth/app_list'
 		}
 	)
