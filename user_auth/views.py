@@ -6,6 +6,11 @@ def login_user(request):
 	state = 'Please log in below...'
 	alert_level = ''
 	username = ''
+	if request.user:
+		if request.user.is_authenticated():
+			state = 'You are already logged in'
+			alert_level = 'success'
+
 	if request.POST:
 		username = request.POST.get('username')
 		password = request.POST.get('password')
