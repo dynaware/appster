@@ -131,7 +131,7 @@ def app_list(request, list_id):
 def new_review(request, app_id):
 	app = Application.objects.get(id=app_id)
 	if request.POST:
-		review = Review(application=app)
+		review = Review(application=app, author=request.user)
 		form = forms.ReviewForm(request.POST, instance=review)
 		form.save()
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -141,11 +142,7 @@ class Review(models.Model):
 	rating = models.SmallIntegerField()
 	application = models.ForeignKey(Application)
 	review_text = models.TextField(null=True)
-
-	def save_model(self, request, obj, form, change):
-		if getattr(obj, 'author', None) is None:
-			obj.author = request.user
-		obj.save()
+	author = models.ForeignKey(User, null=True)
 
 
 class ApplicationList(models.Model):
