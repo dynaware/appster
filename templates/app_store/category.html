@@ -30,6 +30,9 @@
                                 <div class="panel">
                                     <h5>{{ app.name }}</h5>
                                     <h6 class="subheader">{{ app.rating }}/5.0</h6>
+                                    {% for platform in app.foreignapplication_set.all %}
+                                        <img class="platform-logo" src="{{ platform.repository.logo }}"></img>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </a>
