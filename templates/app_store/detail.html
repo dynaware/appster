@@ -21,8 +21,13 @@
         </div>
         <div class="large-5 columns">
             <h2>{{ app.name }}</h2>
+            {% if user.is_authenticated %}
+                <a href="{% url 'new_app_list_entry' app.id %}">Add to App List</a>
+            {% endif %}
+
             {% if app.srating %}<p>{{ app.srating }}/5.0</p>{% endif %}
             <p><a href="{% url 'category' app.category.id %}">{{ app.category }}</a></p>
+
             {% autoescape off %}
             <p>{{ app.description }}</p>
             {% endautoescape %}

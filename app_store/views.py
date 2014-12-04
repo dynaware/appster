@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 
 from app_store.models import *
 from appster import settings
@@ -209,5 +210,36 @@ def about(request):
 		'app_store/about.html',
 		{
 			'title': page_title('About | Appster'),
+		}
+	)
+
+
+@login_required(login_url='/auth/login')
+def new_app_list_entry(request, app_id):
+	form = forms.ApplicationListEntryForm()
+	form.fields['list'].queryset = ApplicationList.objects.filter(author=request.user)
+	alert = None
+	app = Application.objects.get(id=app_id)
+
+	if request.POST:
+		list_entry = ApplicationListEntry(application=app)
+		form = forms.ApplicationListEntryForm(request.POST, instance=list_entry)
+		if form.is_valid():
+			list_entry = form.save()
+			return HttpResponseRedirect(reverse('app_list', args=(list_entry.list.id,)))
+		else:
+			return new_app_list_entry(request, app_id)
+
+
+	return render(
+		request,
+		'app_store/form.html',
+		{
+			'title': page_title('Add App to List | Appster'),
+			'subtitle': app.name,
+			'form_name': 'Add App to List',
+			'form': form,
+			'alert': alert,
+			'url': reverse('new_app_list_entry', args=(app_id,)),
 		}
 	)

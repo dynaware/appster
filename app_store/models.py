@@ -169,6 +169,9 @@ class ApplicationList(models.Model):
 	image = models.URLField()
 	author = models.ForeignKey(User, null=True)
 
+	def __str__(self):
+		return self.name
+
 
 class ApplicationListEntry(models.Model):
 	"""

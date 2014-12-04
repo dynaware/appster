@@ -15,3 +15,10 @@ class NewApp(forms.ModelForm):
 		model = models.Application
 		fields = ['name', 'description', 'category', 'screenshot', 'logo']
 		exclude = ['approved']
+
+
+class ApplicationListEntryForm(forms.ModelForm):
+	class Meta:
+		model = models.ApplicationListEntry
+		fields = ['list']
+		exclude = ['application']
