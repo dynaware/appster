@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 
 from app_store.views import page_title
+from app_store.models import ApplicationList
 
 
 def login_user(request):
@@ -69,3 +71,16 @@ def register_user(request):
 				'title': page_title('Signup | Appster'),
 			}
 		)
+
+
+@login_required(login_url='/auth/login')
+def user(request):
+	lists = ApplicationList.objects.filter(author=request.user)
+	return render(
+		request,
+		'user_auth/user.html',
+		{
+			'title': page_title('Your Account | Appster'),
+			'lists': lists,
+		}
+	)

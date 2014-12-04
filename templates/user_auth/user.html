@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+{% extends 'foundation/base.html' %}
 
-</body>
-</html>
+{% block base_body %}
+    <div class="row">
+        <div class="large-offset-2">
+            <h1>Your Account</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-8 small-10 large-offset-2">
+            <h3>Personal Info</h3>
+            <dl>
+                <dt>Username</dt>
+                <dd>{{ user.username }}</dd>
+
+                <dt>First Name</dt>
+                <dd>{{ user.first_name }}</dd>
+
+                <dt>Last Name</dt>
+                <dd>{{ user.last_name }}</dd>
+
+                <dt>Email</dt>
+                <dd>{{ user.email }}</dd>
+            </dl>
+
+            <h3>App Lists</h3>
+            {% for app_list in lists %}
+                <a href="{% url 'app_list' app_list.id %}">
+                    <div class="large-2 small-6 columns">
+                        {% if app_list.image %}
+                            <img src="{{ app_list.image }}">
+                        {% else %}
+                            <img src="http://placehold.it/1000x1000&text={{ app_list.name }}">
+                        {% endif %}
+
+                        <div class="panel">
+                            <h5>{{ app_list.name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock%}
