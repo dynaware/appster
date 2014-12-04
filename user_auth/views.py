@@ -10,11 +10,10 @@ def login_user(request):
 	username = ''
 	logged_in = False
 
-	if request.user:
-		if request.user.is_authenticated():
-			state = 'You are already logged in'
-			alert_level = 'success'
-			logged_in = True
+	if request.user.is_authenticated():
+		state = 'You are already logged in'
+		alert_level = 'success'
+		logged_in = True
 
 	if request.POST:
 		username = request.POST.get('username')
