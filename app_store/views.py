@@ -17,7 +17,8 @@ def index(request):
 		'app_store/index.html',
 		{
 			'apps': sorted(Application.objects.all(), key=lambda x: x.rating, reverse=True),
-			'title': page_title('Appster by Dynaware')
+			'title': page_title('Appster by Dynaware'),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -40,6 +41,7 @@ def detail(request, app_id):
 				)[:4],
 				key=lambda x: x.rating, reverse=True
 			),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -53,6 +55,7 @@ def category(request, category_id):
 			'category': category,
 			'apps': Application.objects.filter(category=category_id),
 			'title': page_title('{} | Appster'.format(category.title)),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -64,6 +67,7 @@ def categories(request):
 		{
 			'categories': Category.objects.all(),
 			'title': page_title('Browse Categories | Appster'),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -90,6 +94,7 @@ def search(request):
 			'results': sorted(Application.objects.filter(name__icontains=query), key=k, reverse=r),
 			'title': page_title('Search Results | Appster'),
 			'query': query,
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -100,7 +105,8 @@ def app_lists(request):
 		'app_store/app_lists.html',
 		{
 			'lists': ApplicationList.objects.all(),
-			'title': page_title('Application Lists | Appster')
+			'title': page_title('Application Lists | Appster'),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
 
@@ -114,5 +120,6 @@ def app_list(request, list_id):
 			'app_list': list,
 			'apps': [i.application for i in list.applicationlistentry_set.all()],
 			'title': page_title('{} | Appster'.format(list.name)),
+			'logged_in': request.user.is_authenticated(),
 		}
 	)
