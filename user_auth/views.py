@@ -13,12 +13,10 @@ def login_user(request):
 	state = 'Please log in below...'
 	alert_level = ''
 	username = ''
-	logged_in = False
 
 	if request.user.is_authenticated():
 		state = 'You are already logged in'
 		alert_level = 'success'
-		logged_in = True
 
 	if request.POST:
 		username = request.POST.get('username')
@@ -30,7 +28,6 @@ def login_user(request):
 				login(request, user)
 				state = 'You\'re successfully logged in!'
 				alert_level = 'success'
-				logged_in = True
 
 				if request.POST.get('next'):
 					next = request.POST.get('next')
