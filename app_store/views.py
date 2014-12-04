@@ -175,7 +175,7 @@ def new_application(request):
 @login_required(login_url='/auth/login')
 def review_applications(request):
 	if not request.user.is_staff:
-		return index(request)
+		return HttpResponseRedirect('/')
 
 	return render(
 		request,
@@ -189,7 +189,7 @@ def review_applications(request):
 @login_required(login_url='/auth/login')
 def review_application(request, app_id, choice):
 	if not request.user.is_staff:
-		return index(request)
+		return HttpResponseRedirect('/')
 
 	app = Application.objects.get(id=app_id)
 	if choice == '0':
