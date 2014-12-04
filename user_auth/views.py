@@ -19,4 +19,4 @@ def login_user(request):
 		else:
 			state = "Your username and/or password were incorrect."
 
-	return render(request, 'login.html', {'state': state, 'username': username})
+	return render(request, 'user_auth/login.html', {'state': state, 'username': username})
