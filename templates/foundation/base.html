@@ -63,8 +63,7 @@
                         <li class="has-dropdown not-click">
                             <a href="#">STAFF</a>
                             <ul class="dropdown">
-                                <li><a href="{% url 'review_apps' %}">New Application Request</a></li>
-                                <li><a href="{% url 'new_app_list' %}">New App List</a></li>
+                                <li><a href="{% url 'review_apps' %}">Review App Requests</a></li>
                             </ul>
                         </li>
                     {% endif %}
@@ -72,11 +71,13 @@
                     <li class="divider"></li>
                     {% if user.is_authenticated %}
                         <li class="has-dropdown not-click">
-                            <a href="#"><i class="fi-plus"></i>Add</a>
+                            <a href="#"><i class="fi-plus"></i> Add</a>
                             <ul class="dropdown">
-                                <li><a href="{% url 'new_app' %}">Application Request</a></li>
+                                <li><a href="{% url 'new_app' %}">New Application Request</a></li>
+                                <li><a href="{% url 'new_app_list' %}">New App List</a></li>
                             </ul>
                         </li>
+                        <li class="divider"></li>
                         <li><a href="{% url 'user' %}">Your Account</a></li>
                         <li class="divider"></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
