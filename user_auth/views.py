@@ -31,6 +31,12 @@ def login_user(request):
 				state = 'You\'re successfully logged in!'
 				alert_level = 'success'
 				logged_in = True
+
+				if request.POST.get('next'):
+					next = request.POST.get('next')
+					return HttpResponseRedirect(next)
+
+
 			else:
 				state = 'Your account is not active, please contact the site admin.'
 				alert_level = 'warn'
@@ -46,6 +52,7 @@ def login_user(request):
 			'username': username,
 			'alert_level': alert_level,
 			'title': page_title('Login | Appster'),
+			'next': request.GET.get('next')
 		}
 	)
 
