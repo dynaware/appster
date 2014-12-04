@@ -46,9 +46,10 @@ class ForeignRepo(models.Model):
 	"""
 
 	name = models.CharField(max_length=70)
-	url = models.CharField(max_length=120)
-	app_url = models.CharField(max_length=120)
+	url = models.URLField()
+	app_url = models.URLField()
 	platform = models.CharField(max_length=120)
+	logo = models.URLField()
 
 	def __str__(self):
 		return self.name
