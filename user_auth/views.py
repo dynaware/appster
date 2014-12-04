@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
 from app_store.views import page_title
 from app_store.models import ApplicationList
@@ -68,10 +69,12 @@ def register_user(request):
 	else:
 		return render(
 			request,
-			'user_auth/signup.html',
+			'app_store/form.html',
 			{
 				'form': UserCreationForm,
+				'form_name': 'Sign Up for a New Account',
 				'title': page_title('Signup | Appster'),
+				'url': reverse('signup'),
 			}
 		)
 
