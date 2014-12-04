@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 
+from app_store.views import page_title
+
 
 def login_user(request):
 	state = 'Please log in below...'
@@ -40,6 +42,7 @@ def login_user(request):
 			'username': username,
 			'alert_level': alert_level,
 			'logged_in': logged_in,
+			'title': page_title('Login | Appster'),
 		}
 	)
 
