@@ -94,6 +94,11 @@ class Application(models.Model):
 			return 0.0
 		return sum(ratings) / len(ratings)
 
+	@property
+	def srating(self):
+		rating = self.rating
+		return '%0.2f' % rating
+
 	def __str__(self):
 		return self.name
 

@@ -21,7 +21,7 @@
         </div>
         <div class="large-5 columns">
             <h2>{{ app.name }}</h2>
-            {% if app.rating %}<p>{{ app.rating }}/5.0</p>{% endif %}
+            {% if app.srating %}<p>{{ app.srating }}/5.0</p>{% endif %}
             <p><a href="{% url 'category' app.category.id %}">{{ app.category }}</a></p>
             {% autoescape off %}
             <p>{{ app.description }}</p>
