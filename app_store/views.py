@@ -218,3 +218,15 @@ def review_application(request, app_id, choice):
 			'staff': request.user.is_staff,
 		}
 	)
+
+
+def about(request):
+	return render(
+		request,
+		'app_store/about.html',
+		{
+			'title': page_title('About | Appster'),
+			'logged_in': request.user.is_authenticated(),
+			'staff': request.user.is_staff,
+		}
+	)

@@ -15,4 +15,5 @@ urlpatterns = patterns(
 	url(r'new_app$', views.new_application, name='new_app'),
 	url(r'review_apps$', views.review_applications, name='review_apps'),
 	url(r'review_app/(?P<app_id>\d+)/(?P<choice>\d+)/$', views.review_application, name='review_app'),
+	url(r'about$', views.about, name='about'),
 )
