@@ -147,3 +147,25 @@ def new_review(request, app_id):
 			'app': app,
 		}
 	)
+
+@login_required(login_url='/auth/login')
+def new_application(request):
+	alert = None
+
+	if request.POST:
+		app = Application(approved=False)
+		form = forms.NewApp(request.POST, instance=app)
+		form.save()
+
+		alert = 'Application was created successfully, Appster staff will review your request'
+
+	return render(
+		request,
+		'app_store/new_app.html',
+		{
+			'title': page_title('Request New App | Appster'),
+			'logged_in': request.user.is_authenticated(),
+			'form': forms.NewApp,
+			'alert': alert,
+		}
+	)

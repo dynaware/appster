@@ -84,6 +84,7 @@ class Application(models.Model):
 	screenshot = models.URLField(blank=True, null=True)
 	logo = models.URLField(blank=True, null=True)
 	click_count = models.IntegerField(default=0, editable=False)
+	approved = models.BooleanField(default=False)
 
 	@property
 	def rating(self):

@@ -8,3 +8,10 @@ class ReviewForm(forms.ModelForm):
 		model = models.Review
 		fields = ['rating', 'review_text']
 		exclude = ['application']
+
+
+class NewApp(forms.ModelForm):
+	class Meta:
+		model = models.Application
+		fields = ['name', 'description', 'category', 'screenshot', 'logo']
+		exclude = ['approved']
