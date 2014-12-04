@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 
 from app_store.models import *
 from appster import settings
@@ -132,11 +133,13 @@ def new_review(request, app_id):
 
 	return render(
 		request,
-		'app_store/new_review.html',
+		'app_store/form.html',
 		{
 			'title': page_title('New Review | Appster'),
+			'form_name': 'New Review',
 			'form': forms.ReviewForm,
 			'app': app,
+			'url': reverse('new_review'),
 		}
 	)
 
@@ -153,11 +156,13 @@ def new_application(request):
 
 	return render(
 		request,
-		'app_store/new_app.html',
+		'app_store/form.html',
 		{
 			'title': page_title('Request New App | Appster'),
+			'form_name': 'New Application Request',
 			'form': forms.NewApp,
 			'alert': alert,
+			'url': reverse('new_application'),
 		}
 	)
 
